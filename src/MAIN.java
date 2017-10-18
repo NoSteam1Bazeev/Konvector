@@ -4,14 +4,14 @@ public class MAIN {
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
-		double a,b ;
-		int i,k;
-		byte d[]=new byte [0];
+		double a ;
+		int i,j,k;
+		byte d[]=new byte [0],step;
+		int b;
 		long x,h;
 		boolean EXSIT=false;
 		while(!EXSIT) {
 			a = scan.nextDouble();
-			b = a;
 			k = 0;
 			System.out.println("What the type:");
 			if ((long)a<a) {
@@ -146,42 +146,18 @@ public class MAIN {
 		
 			}
 			System.out.print(", 0x");
-			if (b<0) {
-				System.out.print("-");
-				b=-b;
+			step=8;
+			b=0;
+			for (i=0;i<d.length;i++) {
+				b=b+d[i]*step;
+				step/=2;
+				if ((i+1)%4==0) {
+					System.out.print(b<10?b:b==10?"A":b==11?"B":
+						b==12?"C":b==13?"D":b==14?"E":b==15?"F":"");
+					step=8;
+					b=0;
+				}
 			}
-			x=(long)b;
-			b=b-x;
-			k=0;
-			h=x;
-			while (h>0) {
-				k++;
-				h=(long)h/16;
-			}
-			d= new byte[k];
-			for (i=d.length-1;i>-1;i--) {
-				d[i]=(byte)( x % 16);
-				x=x/16;
-			}
-			for (i=0;i<d.length;i++) System.out.print(d[i]<10?d[i]:
-				  	d[i]==10?"A":d[i]==11?"B":d[i]==12?"C":d[i]==13?"D":d[i]==14?"E":d[i]==15?"F":"");
-			while ((int)b<b) b=b*10;
-			x=(long)b;
-			if (x>0) System.out.print(",");
-
-			k=0;
-			h=x;
-			while (h>0) {
-				k++;
-				h=(long)h/16;
-			}
-			d= new byte[k];
-			for (i=d.length-1;i>-1;i--) {
-				d[i]=(byte)( x % 16);
-				x=x/16;
-			}
-			for (i=0;i<d.length;i++) System.out.print(d[i]<10?d[i]:
-				  	d[i]==10?"A":d[i]==11?"B":d[i]==12?"C":d[i]==13?"D":d[i]==14?"E":d[i]==15?"F":"");
 			System.out.println();
 			System.out.println("Do you want exsit?");
 			System.out.println("true/false");
